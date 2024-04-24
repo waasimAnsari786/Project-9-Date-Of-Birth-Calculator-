@@ -1,0 +1,106 @@
+.poppins-thin {
+    font-family: "Poppins", sans-serif;
+    font-weight: 100;
+    font-style: normal;
+}
+
+
+
+/* my font size's media query start */
+html {
+    font-size: 62.5%;
+}
+
+@media (min-width:1200px) {
+    html {
+        font-size: 68.75%;
+    }
+}
+
+@media (min-width:1000px) {
+    html {
+        font-size: 68.75%;
+    }
+}
+
+@media (max-width:992px) {
+    html {
+        font-size: 62.5%;
+    }
+}
+
+@media (max-width:768px) {
+    html {
+        font-size: 56.25%;
+    }
+}
+
+@media (max-width:576px) {
+    html {
+        font-size: 50%;
+    }
+
+}
+
+@media (max-width:465px) {
+    .form {
+        width: 30rem !important;
+    }
+}
+
+/* my font size's media query end */
+
+
+
+
+/* my DOB Calculator start */
+
+html body{
+    background: url(https://i.pinimg.com/originals/34/ee/27/34ee27cffabacc6da05ac91f6e3bf59e.jpg);
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    height: 100vh;
+    font-family: "Poppins", sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.calculator{
+    background: linear-gradient(#283f695d , #78264a75);
+    backdrop-filter: blur(.4rem);
+    border-radius: 1rem;
+    box-shadow:  .4rem .7rem 1rem #8d8d8d5d;
+    padding: 3.5rem
+}
+
+.heading{
+    color: white;
+    text-transform: capitalize;
+    text-align: center;
+}
+
+html input{
+    width: 100%;
+    border: none;
+    outline: none;
+    margin: .5rem;
+    font-size: 2rem;
+    padding: 1rem;
+    border-radius: 1rem;
+    color: rgb(81, 81, 82);
+}
+
+#submit-btn{
+    width: 10rem;
+    font-size: 1.5rem;
+    padding: .5rem;
+}
+
+/* my DOB calculator end */
+
+
+.rough {
+    border: .1rem solid rgb(255, 255, 255);
+}
