@@ -20,11 +20,11 @@ const cnvtValInZero = (element , element2 , msg) => {
 
 const calcOfLifeDaysAndAge = (userDate , rough1 , userMonth , rough2) => {
     for (let d = userDate; d < date; d++) {
-        rough1++
+        rough1++;
     }
 
     for (let m = userMonth; m < month; m++) {
-        rough2++
+        rough2++;
     }
 
     alert(`You are ${rough1} days old! \nYou are ${rough2} months old! \nYour life days are ${rough2 * 30 + rough1}!`);
@@ -71,7 +71,7 @@ const splitUserDOBFunc = (element) => {
             printUserAge(userAge, lifeDays, year, userYear);
         }
 
-        else if (userDate >= date && userMonth > month && userYear === year) {
+        else if (userDate > date && userMonth >= month && userYear === year) {
             cnvtValInZero(userAge , lifeDays , `Correct your DOB's date or month because it's greater than today's date!`);
         }
 
@@ -83,17 +83,25 @@ const splitUserDOBFunc = (element) => {
             cnvtValInZero(userAge , lifeDays , `The DOB you provided to me, that's a new born baby's DOB who borned on today and he is just few hours old. You can ask me his age tomorrow or after few days or years. \n\n May Allah bless him a good, healthy and long life with lots happiness and success!`);
         }
 
-        else if (userDate > date && userMonth < month && userYear === year) {
-            let rough = 1;
+        else if (userDate >= date && userMonth < month && userYear === year) {
+            let rough = 0;
             let rough2 = 1;
+            let newDate = userDate - date;
 
-            calcOfLifeDaysAndAge(userDate , rough , userMonth + 1 , rough2);
+            calcOfLifeDaysAndAge(userDate , rough - newDate , userMonth + 1 , rough2);
         }
 
         else if (userDate < date && userMonth < month && userYear === year) {
             let rough = 1;
             let rough2 = 1;
-            
+                
+            calcOfLifeDaysAndAge(userDate , rough , userMonth + 1 , rough2);
+        }
+
+        else if (userDate < date && userMonth === month && userYear === year) {
+            let rough = 0;
+            let rough2 = 0;
+                
             calcOfLifeDaysAndAge(userDate , rough , userMonth + 1 , rough2);
         }
 
