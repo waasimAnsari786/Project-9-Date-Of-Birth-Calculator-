@@ -12,8 +12,22 @@ const printUserAge = (userAgeVal, userlifeDaysVal, systemYear, userYearVal) => {
     userlifeDaysVal.value = userAgeVal.value * 365;
 };
 
-const cnvtValInZero = (element) => {
+const cnvtValInZero = (element , element2 , msg) => {
+    alert(`${msg}`);
     element.value = `` ;
+    element2.value = `` ;
+};
+
+const calcOfLifeDaysAndAge = (userDate , rough1 , userMonth , rough2) => {
+    for (let d = userDate; d < date; d++) {
+        rough1++
+    }
+
+    for (let m = userMonth; m < month; m++) {
+        rough2++
+    }
+
+    alert(`You are ${rough1} days old! \nYou are ${rough2} months old! \nYour life days are ${rough2 * 30 + rough1}!`);
 };
 
 const splitUserDOBFunc = (element) => {
@@ -57,11 +71,36 @@ const splitUserDOBFunc = (element) => {
             printUserAge(userAge, lifeDays, year, userYear);
         }
 
+        else if (userDate >= date && userMonth > month && userYear === year) {
+            cnvtValInZero(userAge , lifeDays , `Correct your DOB's date or month because it's greater than today's date!`);
+        }
+
+        else if (userDate < date && userMonth > month && userYear === year) {
+            cnvtValInZero(userAge , lifeDays , `Correct your DOB's date or month because it's greater than today's date!`);
+        }
+
+        else if (userDate === date && userMonth === month && userYear === year) {
+            cnvtValInZero(userAge , lifeDays , `The DOB you provided to me, that's a new born baby's DOB who borned on today and he is just few hours old. You can ask me his age tomorrow or after few days or years. \n\n May Allah bless him a good, healthy and long life with lots happiness and success!`);
+        }
+
+        else if (userDate > date && userMonth < month && userYear === year) {
+            let rough = 1;
+            let rough2 = 1;
+
+            calcOfLifeDaysAndAge(userDate , rough , userMonth + 1 , rough2);
+        }
+
+        else if (userDate < date && userMonth < month && userYear === year) {
+            let rough = 1;
+            let rough2 = 1;
+            
+            calcOfLifeDaysAndAge(userDate , rough , userMonth + 1 , rough2);
+        }
+
     }
 
     else{
-        alert(`Please enter a valid Date Of Birth`);
-        cnvtValInZero(userDOB);
+        cnvtValInZero(userAge , lifeDays , `Please enter a valid Date Of Birth`);
     }
 };
 
