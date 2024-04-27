@@ -7,9 +7,54 @@ let date = new Date().getDate();
 let month = new Date().getMonth() + 1;
 let year = new Date().getFullYear();
 
+let allInpAndPerasInner = document.querySelector(".all-inp-ctnr-inner");
+
+let createNewDiv = document.createElement("div");
+createNewDiv.classList.add("col-12" , "ctnr-of-inp-and-peras");
+allInpAndPerasInner.append(createNewDiv);
+
+let ageAndDaysInputSec = document.querySelector("#age-and-days-input-sec");
+createNewDiv.append(ageAndDaysInputSec);
+
+let createNewDiv2 = document.createElement("div");
+createNewDiv2.classList.add("col-12" , "ctnr-of-peras");
+createNewDiv.append(createNewDiv2);
+
+let newDiv = document.querySelector(".ctnr-of-inp-and-peras")
+
+for (let index = 0; index < 2; index++) {
+    let createnewPeras = document.createElement("p");
+    createnewPeras.classList.add("user-lifedays-and-age" , "mt-5");
+    createnewPeras.setAttribute("id" , `new-pera-${index + 1}`);
+    createNewDiv2.append(createnewPeras);
+}
+
+console.log(allInpAndPerasInner);
+
 const printUserAge = (userAgeVal, userlifeDaysVal, systemYear, userYearVal) => {
     userAgeVal.value = systemYear - userYearVal;
     userlifeDaysVal.value = userAgeVal.value * 365;
+
+    let updatedUserAge = +userAgeVal.value + 1;
+    let updatedUserLifeDays = +userlifeDaysVal.value + 1 * 365;
+
+    let splitUserDOB = userDOB.value.split(" ");
+    let splitedUserYear = +splitUserDOB[2];
+
+    let newPera1 = createNewDiv2.children[0];
+    let newPera2 = createNewDiv2.children[1];
+    
+    if (splitedUserYear < userYearVal) {
+        newPera1.innerText = `You are ${userAgeVal.value} years old as well as you are going to be ${updatedUserAge} years old in this year!`;
+
+        newPera2.innerText = `Your life days are ${userlifeDaysVal.value} along with that you are going to complete your life's ${updatedUserLifeDays} days in this year!`;
+    }
+
+    else{
+        newPera1.innerText = `You are ${userAgeVal.value} years old!`;
+
+        newPera2.innerText = `Your life days are ${userlifeDaysVal.value}!`;
+    }
 };
 
 const cnvtValInZero = (element , element2 , msg) => {
@@ -37,10 +82,13 @@ const splitUserDOBFunc = (element) => {
     let userYear = +splitUserDOB[2];
     let userYear2 = userYear + 1;
 
+    let splitedUserDOB = splitUserDOB;
+
     if (userDate <= 31 && userMonth <= 12 && userYear <= year) {
 
         if (userDate > date && userMonth > month && userYear < year) {
             printUserAge(userAge, lifeDays, year, userYear2);
+
         }
 
         else if (userDate < date && userMonth < month && userYear < year) {
@@ -80,7 +128,7 @@ const splitUserDOBFunc = (element) => {
         }
 
         else if (userDate === date && userMonth === month && userYear === year) {
-            cnvtValInZero(userAge , lifeDays , `The DOB you provided to me, that's a new born baby's DOB who borned on today and he is just few hours old. You can ask me his age tomorrow or after few days or years. \n\n May Allah bless him a good, healthy and long life with lots happiness and success!`);
+            cnvtValInZero(userAge , lifeDays , `The DOB you provided to me, that's a new born baby's DOB who borned on today and he is just few hours old. You can ask me his age tomorrow or after few days or years. \n\nMay Allah bless him a good, healthy and long life with lots happiness and success!`);
         }
 
         else if (userDate >= date && userMonth < month && userYear === year) {
