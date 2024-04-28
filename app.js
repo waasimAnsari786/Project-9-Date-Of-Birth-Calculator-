@@ -2,6 +2,7 @@ let userDOB = document.querySelector("#user-DOB");
 let lifeDays = document.querySelector("#life-days");
 let userAge = document.querySelector("#user-age");
 let submitBtn = document.querySelector("#submit-btn");
+let resetBtn = document.querySelector("#reset-btn");
 let monthsNames = ["Jan", "Feb", "Mar", "Apr", "May", "June", "July", "Aug", "Sep", "Oct", "Nov", "Dec"];
 
 let date = new Date().getDate();
@@ -224,6 +225,21 @@ const splitUserDOBFunc = (element) => {
 
 submitBtn.addEventListener("click", () => {
     splitUserDOBFunc(userDOB.value);
+    submitBtn.classList.add("hide");
+    resetBtn.classList.remove("hide");
+});
+
+resetBtn.addEventListener("click" , () => {
+    resetBtn.classList.add("hide");
+    submitBtn.classList.remove("hide");
+
+    cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `If you want to reset all input fields so you have to click on "OK"!`);
+    userDOB.value = ``;
+});
+
+userDOB.addEventListener("input" , () => {
+    resetBtn.classList.add("hide");
+    submitBtn.classList.remove("hide");
 });
 
 userAge.addEventListener("input", () => {
