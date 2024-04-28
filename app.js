@@ -275,11 +275,11 @@ const splitUserDOBFunc = (element) => {
         }
 
         else if (userDate > date && userMonth >= month && userYear === year) {
-            cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `Correct your DOB's date or month because it's greater than today's date!`);
+            cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `Correct your DOB's date or month because it's greater than today's date! It's isn't making any sense.`);
         }
 
         else if (userDate < date && userMonth > month && userYear === year) {
-            cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `Correct your DOB's date or month because it's greater than today's date!`);
+            cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `Correct your DOB's date or month because it's greater than today's date! It's isn't making any sense.`);
         }
 
         else if (userDate === date && userMonth === month && userYear === year) {
