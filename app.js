@@ -51,7 +51,7 @@ const printMsg = (msgElement, msgElement2, userAgeValue, userlifeDaysValue, user
 
 const printMsg2 = (msgElement, msgElement2, daysCountVal, monthCountVal, userDate, monthName, currYear) => {
     let str = `You are ${monthCountVal} months and ${daysCountVal} days old! moreover if Allah wills you will be 1 year old on ${userDate} ${monthName} ${currYear}! Your life days are ${monthCountVal * 30 + daysCountVal}!`;
-    let str2 = `May Allah bless him a good, healthy and long life with lots of happiness and success!`;
+    let str2 = `May Allah bless you a good, healthy and long life with lots of happiness and success!`;
 
     msgElement.innerText = str;
     msgElement2.innerText = str2;
