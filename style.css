@@ -92,7 +92,7 @@ html input{
     color: rgb(81, 81, 82);
 }
 
-#submit-btn{
+.calc-btn{
     width: 10rem;
     font-size: 1.5rem;
     padding: .5rem;
@@ -116,6 +116,10 @@ html input{
 
 .createNewDiv2 , #age-and-days-input-sec{
     transition: 1s;
+}
+
+.hide{
+    display: none;
 }
 
 /* my DOB calculator end */
