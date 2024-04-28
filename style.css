@@ -82,7 +82,7 @@ html body{
 }
 
 html input{
-    width: 100%;
+    width: 98%;
     border: none;
     outline: none;
     margin: .5rem;
@@ -101,13 +101,21 @@ html input{
 .user-lifedays-and-age{
     color: white;
     font-family: "Poppins", sans-serif;
-    font-size: 2rem;
+    font-size: 1.2rem;
     font-style: italic;
 }
 
-.ctnr-of-inp-and-peras{
+.all-inp-ctnr-inner{
     overflow: hidden;
+}
+
+.ctnr-of-inp-and-peras{
     display: flex;
+    transition: 1s;
+}
+
+.createNewDiv2 , #age-and-days-input-sec{
+    transition: 1s;
 }
 
 /* my DOB calculator end */

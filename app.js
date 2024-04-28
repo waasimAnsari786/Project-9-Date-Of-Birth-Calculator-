@@ -20,41 +20,46 @@ let createNewDiv2 = document.createElement("div");
 createNewDiv2.classList.add("col-12" , "ctnr-of-peras");
 createNewDiv.append(createNewDiv2);
 
-let newDiv = document.querySelector(".ctnr-of-inp-and-peras")
+let newDiv = document.querySelector(".ctnr-of-inp-and-peras");
+let ctnrOfNewPeras = document.querySelector(".ctnr-of-peras");
+
 
 for (let index = 0; index < 2; index++) {
     let createnewPeras = document.createElement("p");
-    createnewPeras.classList.add("user-lifedays-and-age" , "mt-5");
+    createnewPeras.classList.add("user-lifedays-and-age" , "mt-4");
     createnewPeras.setAttribute("id" , `new-pera-${index + 1}`);
     createNewDiv2.append(createnewPeras);
-}
+};
 
-console.log(allInpAndPerasInner);
+const slider = (element , timer) => {
+    setTimeout(() => {
+        element.style.transform = `translateX(-100%)`;
+    }, timer);
+};
 
-const printUserAge = (userAgeVal, userlifeDaysVal, systemYear, userYearVal) => {
+const printDetailsOfAgeAndLifeDays = (userAgeValue , userlifeDaysValue) => {
+    let str = `You are ${+userAgeValue} years old as well as if Allah wills you will be ${+userAgeValue + 1} years old!`;
+    
+    let str2 = `Your life days are ${+userlifeDaysValue} along with that if Allah wills you will complete your life's ${+userlifeDaysValue + 365} days!`;
+    
+    let newPera1 = createNewDiv2.children[0];
+    let newPera2 = createNewDiv2.children[1];
+
+    newPera1.innerText = str;
+    newPera2.innerText = str2;
+};
+
+const printUserAge = (userAgeVal , userlifeDaysVal , systemYear, userYearVal) => {
     userAgeVal.value = systemYear - userYearVal;
     userlifeDaysVal.value = userAgeVal.value * 365;
 
-    let updatedUserAge = +userAgeVal.value + 1;
-    let updatedUserLifeDays = +userlifeDaysVal.value + 1 * 365;
-
-    let splitUserDOB = userDOB.value.split(" ");
-    let splitedUserYear = +splitUserDOB[2];
-
-    let newPera1 = createNewDiv2.children[0];
-    let newPera2 = createNewDiv2.children[1];
+    let finalAgeOfUser = userAgeVal.value;
+    let finalDaysOfUserLife = userlifeDaysVal.value;
     
-    if (splitedUserYear < userYearVal) {
-        newPera1.innerText = `You are ${userAgeVal.value} years old as well as you are going to be ${updatedUserAge} years old in this year!`;
+    slider(ageAndDaysInputSec , 2000);
+    slider(ctnrOfNewPeras , 3000);
 
-        newPera2.innerText = `Your life days are ${userlifeDaysVal.value} along with that you are going to complete your life's ${updatedUserLifeDays} days in this year!`;
-    }
-
-    else{
-        newPera1.innerText = `You are ${userAgeVal.value} years old!`;
-
-        newPera2.innerText = `Your life days are ${userlifeDaysVal.value}!`;
-    }
+    printDetailsOfAgeAndLifeDays(finalAgeOfUser , finalDaysOfUserLife);
 };
 
 const cnvtValInZero = (element , element2 , msg) => {
@@ -63,16 +68,19 @@ const cnvtValInZero = (element , element2 , msg) => {
     element2.value = `` ;
 };
 
-const calcOfLifeDaysAndAge = (userDate , rough1 , userMonth , rough2) => {
+const printUserAge2 = (userDate , daysCountVal , userMonth , monthCountVal , systemYear) => {
     for (let d = userDate; d < date; d++) {
-        rough1++;
+        daysCountVal++;
     }
 
     for (let m = userMonth; m < month; m++) {
-        rough2++;
+        monthCountVal++;
     }
 
-    alert(`You are ${rough1} days old! \nYou are ${rough2} months old! \nYour life days are ${rough2 * 30 + rough1}!`);
+    userAge.value = ``;
+    lifeDays.value = ``;
+    
+    // alert(`You are ${daysCountVal} days old! \nYou are ${monthCountVal} months old! \nYour life days are ${monthCountVal * 30 + daysCountVal}!`);
 };
 
 const splitUserDOBFunc = (element) => {
@@ -81,8 +89,6 @@ const splitUserDOBFunc = (element) => {
     let userMonth = +splitUserDOB[1];
     let userYear = +splitUserDOB[2];
     let userYear2 = userYear + 1;
-
-    let splitedUserDOB = splitUserDOB;
 
     if (userDate <= 31 && userMonth <= 12 && userYear <= year) {
 
@@ -132,25 +138,25 @@ const splitUserDOBFunc = (element) => {
         }
 
         else if (userDate >= date && userMonth < month && userYear === year) {
-            let rough = 0;
-            let rough2 = 1;
+            let daysCount = 0;
+            let monthCount = 1;
             let newDate = userDate - date;
 
-            calcOfLifeDaysAndAge(userDate , rough - newDate , userMonth + 1 , rough2);
+            printUserAge2(userDate , daysCount - newDate , userMonth + 1 , monthCount , year);
         }
 
         else if (userDate < date && userMonth < month && userYear === year) {
-            let rough = 1;
-            let rough2 = 1;
+            let daysCount = 1;
+            let monthCount = 1;
                 
-            calcOfLifeDaysAndAge(userDate , rough , userMonth + 1 , rough2);
+            printUserAge2(userDate , daysCount , userMonth + 1 , monthCount , year);
         }
 
         else if (userDate < date && userMonth === month && userYear === year) {
-            let rough = 0;
-            let rough2 = 0;
+            let daysCount = 0;
+            let monthCount = 0;
                 
-            calcOfLifeDaysAndAge(userDate , rough , userMonth + 1 , rough2);
+            printUserAge2(userDate , daysCount , userMonth + 1 , monthCount , year);
         }
 
     }
@@ -162,4 +168,12 @@ const splitUserDOBFunc = (element) => {
 
 submitBtn.addEventListener("click", () => {
     splitUserDOBFunc(userDOB.value);
+});
+
+userAge.addEventListener("input" , () => {
+    cnvtValInZero(userAge , lifeDays , `You are unable to input any value in the input field!`);
+});
+
+lifeDays.addEventListener("input" , () => {
+    cnvtValInZero(userAge , lifeDays , `You are unable to input any value in the input field!`);
 });
