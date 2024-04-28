@@ -31,20 +31,31 @@ for (let index = 0; index < 2; index++) {
     createNewDiv2.append(createnewPeras);
 };
 
-const slider = (element, timer) => {
+let newPera1 = createNewDiv2.children[0];
+let newPera2 = createNewDiv2.children[1];
+
+const slider = (element, timer , propertyVal) => {
     setTimeout(() => {
-        element.style.transform = `translateX(-100%)`;
+        element.style.transform = `translateX(${propertyVal}%)`;
     }, timer);
 };
 
-const printMsg = (msgElement, msgElement2, userAgeValue , userlifeDaysValue , userDate , monthName , currYear) => {
+const printMsg = (msgElement, msgElement2, userAgeValue, userlifeDaysValue, userDate, monthName, currYear) => {
     let str = `You are ${+userAgeValue} years old as well as if Allah wills you will be ${+userAgeValue + 1} years old on ${userDate} ${monthName} ${currYear}!`;
-
     let str2 = `Your life days are ${+userlifeDaysValue} along with that if Allah wills you will complete your life's ${+userlifeDaysValue + 365} days on ${userDate} ${monthName} ${currYear}!`;
-    
+
     msgElement.innerText = str;
     msgElement2.innerText = str2;
 };
+
+const printMsg2 = (msgElement, msgElement2, daysCountVal, monthCountVal, userDate, monthName, currYear) => {
+    let str = `You are ${monthCountVal} months and ${daysCountVal} days old! moreover if Allah wills you will be 1 year old on ${userDate} ${monthName} ${currYear}! Your life days are ${monthCountVal * 30 + daysCountVal}!`;
+    let str2 = `May Allah bless him a good, healthy and long life with lots of happiness and success!`;
+
+    msgElement.innerText = str;
+    msgElement2.innerText = str2;
+};
+
 
 const printDetailsOfAgeAndLifeDays = (userAgeVal, userlifeDaysVal, systemYear, userYearVal) => {
     userAgeVal.value = systemYear - userYearVal;
@@ -58,19 +69,17 @@ const printDetailsOfAgeAndLifeDays = (userAgeVal, userlifeDaysVal, systemYear, u
     let splitedUserMonth = +splitUserDOB[1];
     let splitedUserYear = +splitUserDOB[2];
 
-    let newPera1 = createNewDiv2.children[0];
-    let newPera2 = createNewDiv2.children[1];
 
     monthsNames.map((monthsName, index) => {
         let newIdx = index + 1;
 
         if (splitedUserMonth === newIdx) {
             if (splitedUserYear === userYearVal) {
-                printMsg(newPera1, newPera2, userAgeValue , userlifeDaysValue , splitedUserDate , monthsName , year + 1);
+                printMsg(newPera1, newPera2, userAgeValue, userlifeDaysValue, splitedUserDate, monthsName, year + 1);
             }
 
             else if (splitedUserYear < userYearVal) {
-                printMsg(newPera1, newPera2, userAgeValue , userlifeDaysValue , splitedUserDate , monthsName , year);
+                printMsg(newPera1, newPera2, userAgeValue, userlifeDaysValue, splitedUserDate, monthsName, year);
             }
 
         }
@@ -81,29 +90,47 @@ const printUserAge = (userAgeVal, userlifeDaysVal, systemYear, userYearVal) => {
     userAgeVal.value = systemYear - userYearVal;
     userlifeDaysVal.value = userAgeVal.value * 365;
 
-    slider(ageAndDaysInputSec, 2000);
-    slider(ctnrOfNewPeras, 3000);
+    slider(ageAndDaysInputSec, 3000 , -100);
+    slider(ctnrOfNewPeras, 4000 , -100);
 };
 
-const cnvtValInZero = (element, element2, msg) => {
+const cnvtValInZero = (element, element2, element3 , element4 , msg) => {
     alert(`${msg}`);
     element.value = ``;
     element2.value = ``;
+    element3.innerText = ``;
+    element4.innerText = ``;
+    slider(ageAndDaysInputSec , 0 , 0);
+    slider(ctnrOfNewPeras , 0 , 0);
 };
 
 const printUserAge2 = (userDate, daysCountVal, userMonth, monthCountVal) => {
+    let splitedUserDOB = userDOB.value.split(" ");
+    let splitedUserDate = +splitedUserDOB[0];
+    let splitedUserMonth = +splitedUserDOB[1];
+    let splitedUserYear = +splitedUserDOB[2];
+    
     for (let d = userDate; d < date; d++) {
         daysCountVal++;
     }
-
+    
     for (let m = userMonth; m < month; m++) {
         monthCountVal++;
     }
-
+    
     userAge.value = ``;
     lifeDays.value = ``;
+    
+    slider(ageAndDaysInputSec, 3000 , -100);
+    slider(ctnrOfNewPeras, 4000 , -100);
 
-    // alert(`You are ${daysCountVal} days old! \nYou are ${monthCountVal} months old! \nYour life days are ${monthCountVal * 30 + daysCountVal}!`);
+    monthsNames.map((monthsName, index) => {
+        let newIdx = index + 1;
+
+        if (splitedUserMonth === newIdx) {
+            printMsg2(newPera1, newPera2, daysCountVal , monthCountVal , splitedUserDate , monthsName , year + 1);
+        }
+    });
 };
 
 const splitUserDOBFunc = (element) => {
@@ -156,15 +183,15 @@ const splitUserDOBFunc = (element) => {
         }
 
         else if (userDate > date && userMonth >= month && userYear === year) {
-            cnvtValInZero(userAge, lifeDays, `Correct your DOB's date or month because it's greater than today's date!`);
+            cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `Correct your DOB's date or month because it's greater than today's date!`);
         }
 
         else if (userDate < date && userMonth > month && userYear === year) {
-            cnvtValInZero(userAge, lifeDays, `Correct your DOB's date or month because it's greater than today's date!`);
+            cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `Correct your DOB's date or month because it's greater than today's date!`);
         }
 
         else if (userDate === date && userMonth === month && userYear === year) {
-            cnvtValInZero(userAge, lifeDays, `The DOB you provided to me, that's a new born baby's DOB who borned on today and he is just few hours old. You can ask me his age tomorrow or after few days or years. \n\nMay Allah bless him a good, healthy and long life with lots happiness and success!`);
+            cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `The DOB you provided to me, that's a new born baby's DOB who borned on today and he is just few hours old. You can ask me his age tomorrow or after few days or years. \n\nMay Allah bless him a good, healthy and long life with lots happiness and success!`);
         }
 
         else if (userDate >= date && userMonth < month && userYear === year) {
@@ -188,11 +215,10 @@ const splitUserDOBFunc = (element) => {
 
             printUserAge2(userDate, daysCount, userMonth + 1, monthCount, year);
         }
-
     }
 
     else {
-        cnvtValInZero(userAge, lifeDays, `Please enter a valid Date Of Birth`);
+        cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `Please enter a valid Date Of Birth`);
     }
 };
 
@@ -201,9 +227,9 @@ submitBtn.addEventListener("click", () => {
 });
 
 userAge.addEventListener("input", () => {
-    cnvtValInZero(userAge, lifeDays, `You are unable to input any value in the input field!`);
+    cnvtValInZero(userAge, lifeDays, newPera1 , newPera2 , `You are unable to input any value in the input field!`);
 });
 
 lifeDays.addEventListener("input", () => {
-    cnvtValInZero(userAge, lifeDays, `You are unable to input any value in the input field!`);
+    cnvtValInZero(userAge, lifeDays , newPera1 , newPera2 , `You are unable to input any value in the input field!`);
 });
