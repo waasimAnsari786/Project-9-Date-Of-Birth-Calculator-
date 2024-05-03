@@ -42,9 +42,9 @@ html {
 
 }
 
-@media (max-width:465px) {
-    .form {
-        width: 30rem !important;
+@media (max-width:440px) {
+    .calculator {
+        width: 35rem !important;
     }
 }
 
@@ -82,7 +82,6 @@ html body{
 }
 
 html input{
-    width: 98%;
     border: none;
     outline: none;
     margin: .5rem;
