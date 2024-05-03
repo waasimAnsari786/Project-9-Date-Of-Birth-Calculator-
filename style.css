@@ -43,9 +43,9 @@ html {
 }
 
 @media (max-width:440px) {
-    .calculator {
+    /* .calculator {
         width: 31rem !important;
-    }
+    } */
 }
 
 /* my font size's media query end */
