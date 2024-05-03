@@ -44,7 +44,7 @@ html {
 
 @media (max-width:440px) {
     .calculator {
-        width: 35rem !important;
+        width: 31rem !important;
     }
 }
 
@@ -82,6 +82,7 @@ html body{
 }
 
 html input{
+    width: 97%;
     border: none;
     outline: none;
     margin: .5rem;
