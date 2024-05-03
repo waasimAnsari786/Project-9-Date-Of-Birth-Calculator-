@@ -44,7 +44,7 @@ html {
 
 @media (max-width:440px) {
     .calculator {
-        width: 40rem !important;
+        width: 35rem !important;
     }
 }
 
